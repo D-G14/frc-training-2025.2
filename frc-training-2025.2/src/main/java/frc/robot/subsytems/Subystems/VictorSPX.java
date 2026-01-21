@@ -1,12 +1,14 @@
 package frc.robot.subsytems.Subystems;
 
-public class VictorSPX {
+import com.ctre.phoenix6.signals.NeutralModeValue;
 
+public class VictorSPX {
+//Should Victor SPX be an int, float, boolean, string?
     public VictorSPX(int i) {
         //TODO Auto-generated constructor stub
     }
 
-    public void setNeutralMode(String brake) {
+    public void setNeutralMode(NeutralModeValue brake) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setNeutralMode'");
     }
@@ -25,5 +27,20 @@ public class VictorSPX {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'get'");
     }
+
+    public void follow(TalonSRX m_Leader) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'follow'");
+    }
+
+    public void set(double speed) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'set'");
+    }
+
+    /*public void follow(TalonSRX m_Leader) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'follow'");
+    }*/
 
 }

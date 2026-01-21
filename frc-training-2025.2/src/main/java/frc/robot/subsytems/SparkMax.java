@@ -1,5 +1,7 @@
 package frc.robot.subsytems;
 
+import com.revrobotics.spark.config.SparkMaxConfig;
+
 public class SparkMax {
 
     public SparkMax(int kmotorid, Object kBrushless) {
