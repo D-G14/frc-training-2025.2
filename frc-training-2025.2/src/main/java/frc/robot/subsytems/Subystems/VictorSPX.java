@@ -28,14 +28,13 @@ public class VictorSPX {
         throw new UnsupportedOperationException("Unimplemented method 'get'");
     }
 
-    public void follow(TalonSRX m_Leader) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'follow'");
-    }
-
     public void set(double speed) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'set'");
+    }
+    public void follow(TalonSRX m_rightLeader) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'follow'");
     }
 
     /*public void follow(TalonSRX m_Leader) {
