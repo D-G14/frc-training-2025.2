@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 
-package frc.robot.subsytems;
+package frc.robot.subsystems;
 
 import com.ctre.phoenix6.signals.NeutralModeValue;
 //Import for the joystick --v (down arrow)
@@ -15,10 +15,8 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.DriveConstants;
-/*import frc.robot.subsytems.Subystems.WPI_TalonSRX;
-import frc.robot.subsytems.Subystems.WPI_VictorSPX;*/
-import frc.robot.subsytems.Subystems.TalonSRX;
-import frc.robot.subsytems.Subystems.VictorSPX;
+import frc.robot.subsystems.Subsystems.TalonSRX;
+import frc.robot.subsystems.Subsystems.VictorSPX;
 
 
 

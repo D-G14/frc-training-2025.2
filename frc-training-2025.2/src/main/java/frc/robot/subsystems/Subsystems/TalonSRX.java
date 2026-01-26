@@ -1,4 +1,4 @@
-package frc.robot.subsytems.Subystems;
+package frc.robot.subsystems.Subsystems;
 
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
