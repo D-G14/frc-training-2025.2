@@ -4,16 +4,37 @@
 
 package frc.robot.commands;
 
+//import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Motor;
+import frc.robot.constants.IOConstants;
+import frc.robot.constants.MotorConstants;
 
-  
+import frc.robot.subsystems.Motor;
+//import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+//import edu.wpi.first.wpilibj2.command.CommandBase;
+//Trying to declare a new Joystick 
+import edu.wpi.first.wpilibj.Joystick;
+// public class RunMotorForTime extends CommandBase{
+//   private final MotorController m_motor;
+//   private final double m_speed;
+// }
+// public RunMotorForTime(MotorController motor, double speed){
+//   this.m_motor = motor;
+//   this.m_speed = speed;
+// }
+
 /*  You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class ArcadeMotor extends Command {
   /** Creates a new ArcadeMotor. */
-  private Motor m_motor;  
-  public ArcadeMotor() {
+  private Motor m_motor;    //field variable
+  private Joystick m_joystick;
+  private double m_speed; //Do I have to pass this into a constructor?
+  
+  public ArcadeMotor(Motor m_motor, Joystick m_joystick) {
+    this.m_motor = m_motor;
+    this.m_joystick = m_joystick; 
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_motor);
   }
   // Called when the command is initially scheduled.
   @Override
@@ -21,16 +42,23 @@ public class ArcadeMotor extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_speed = m_joystick.getRawAxis(IOConstants.kMotorControlAxis) * MotorConstants.kArcadeMultiplier;
+    m_motor.setSpeed(m_speed);
+  }
   
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_motor.setSpeed(0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
   }
+  //Trying to declare motors
+  // private final Spark m_LeftMotor= new Spark(0);
+  // private final Spark m_rightMotor= new Spark(0);
 }
-

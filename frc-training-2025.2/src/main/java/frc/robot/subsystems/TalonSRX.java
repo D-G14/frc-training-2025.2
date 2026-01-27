@@ -1,4 +1,4 @@
-package frc.robot.subsystems.Subsystems;
+package frc.robot.subsystems;
 
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
@@ -8,11 +8,7 @@ public class TalonSRX{
         //TODO Auto-generated constructor stub
     }
 
-    public TalonSRX() {
-        //TODO Auto-generated constructor stub
-    }
-
-   
+  
 
     public void setInverted(boolean b) {
         // TODO Auto-generated method stub

@@ -4,25 +4,12 @@
 
 package frc.robot.constants;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+/** Add your docs here. */
+public class DriveConstants{
+    public static final int kTalonLeftID = 0;
+    public static final int kTalonRightID = 0;
+    public static final int kVictorLeftID = 0;
+    public static final int kVictorRightID = 0;
 
-public class DriveConstants extends SubsystemBase {
-  public static int kTalonRight = 0;
-  public static int kTalonLeft = 0;
-  public static int kVictorRight = 0;
-public static int kVictorLeft = 0;
-public static double kspeed = 0;
-
-// public static double turnSpeed = 0;
-// public static double leftSpeed = 1;
-// public static double rightSpeed = -1;
-
-
-  /** Creates a new DriveConstants. */
-  public DriveConstants() {}
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
   }
-}
+

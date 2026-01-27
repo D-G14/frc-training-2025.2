@@ -41,8 +41,8 @@ public class ArcadeDrive extends Command {
    //do I need this? -->
     //m_speed = m_joystick.getRawAxis(IOConstants.kMotorControlAxis) * MotorConstants.kArcadeMultiplier;
   //invert because y is negative when going forward.
-  m_speed = -m_joystick.getY() * MotorConstants.kArcadeMultiplier; 
-  m_turn = m_joystick.getX()  * MotorConstants.kTurnMultiplier;
+  m_speed = -m_joystick.getRawAxis(0) * MotorConstants.kArcadeMultiplier; 
+  m_turn = m_joystick.getRawAxis(0)  * MotorConstants.kTurnMultiplier;
   //turns left because turn is getting subtracted from speed, but turn has to be negative.
   m_left = m_speed + m_turn;
   //turns right because turn is getting subtracted from speed, and turn is positive.
@@ -55,7 +55,8 @@ public class ArcadeDrive extends Command {
   @Override
   public void end(boolean interrupted) {
     //Doesn't this stop the motor when command stops?
-    m_drive.arcadeDrive(0,0);
+    //Does this matter? --v
+    //m_drive.arcadeDrive(0,0);
   }
 
   // Returns true when the command should end.
