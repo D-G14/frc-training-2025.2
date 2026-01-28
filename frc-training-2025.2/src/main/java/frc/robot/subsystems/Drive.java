@@ -80,6 +80,13 @@ private final WPI_VictorSPX m_motorSPX = new WPI_VictorSPX(2);*/
     double rightOutput = m_rightPrimary.getMotorOutputPercent();
     SmartDashboard.putNumber("Left Motor Output",leftOutput);
     SmartDashboard.putNumber("Right Motor Output",rightOutput);*/
+    public double getLeftEncoderTicks() {
+     return m_leftPrimary.getSelectedSensorPosition();
+    }
+    public double getRightEncoderTicks(){
+          return m_rightPrimary.getSelectedSensorPosition();
+      
+    }
 
   /*public void setTurn(double turnSpeed){
     m_leftLeader.set(turnSpeed);

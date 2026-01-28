@@ -45,4 +45,11 @@ public class TalonSRX{
         throw new UnsupportedOperationException("Unimplemented method 'setNeutralMode'");
     }
 
+
+
+	public double getSelectedSensorPosition() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getSelectedSensorPosition'");
+	}
+
 }
