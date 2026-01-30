@@ -14,10 +14,10 @@ public class DriveConstants{
     public static double kTimeInSeconds = 0;
     public static double kDistanceInFeet = 0;
     public static double kInitialTicks = 0;
-    public static double kTargetTics = 0;
+    public static double kTargetTicks = 0;
     public static double kWheelDiameter = 0;
     public static double kTicksPerRotation = 0;
-    
+    public static double kWheelRot = 0;
 
   }
 

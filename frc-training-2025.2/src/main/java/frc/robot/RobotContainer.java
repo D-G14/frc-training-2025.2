@@ -4,12 +4,16 @@
 
 package frc.robot;
 
+import edu.wpi.first.util.sendable.SendableRegistry;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.ArcadeMotor;
+import frc.robot.commands.MoveForDistance;
+import frc.robot.commands.MoveForTime;
 //import edu.wpi.first.wpilibj2.command.RunCommand;
 //import frc.robot.constants.IOConstants;
 import frc.robot.constants.IOConstants;
@@ -22,11 +26,15 @@ public class RobotContainer {
   private final ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_drive, m_joystick);
   private Motor m_motor;
   private ArcadeMotor m_arcadeMotor = new ArcadeMotor(m_motor,m_joystick);
+  private MoveForDistance m_MoveForDistance = new MoveForDistance(m_drive, 0, 0);
+  private MoveForTime m_MoveForTime = new MoveForTime(m_drive, 0, 0);
   //private final Drive m_drivetrain = new Drive();
   //private Joystick m_joystick = new Joystick(IOConstants.kJoystickID);
   public RobotContainer() {
     m_drive.setDefaultCommand(m_arcadeDrive);
     m_motor.setDefaultCommand(m_arcadeMotor);
+    SendableRegistry.add(m_MoveForDistance.getSendable(),"Move For Distance");
+    Shuffleboard.getTab("SmartDashboard").add(m_MoveForDistance.getSendable()).withWidget("Move For Distance");
     configureBindings();
     //This is just me trying something --v (down arrow)
     /*m_drivetrain.setDefaultCommand(
@@ -40,6 +48,6 @@ public class RobotContainer {
   private void configureBindings() {}
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return m_MoveForDistance;
   }
 }
