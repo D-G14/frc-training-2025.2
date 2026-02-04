@@ -87,6 +87,9 @@ private final WPI_VictorSPX m_motorSPX = new WPI_VictorSPX(2);*/
           return m_rightPrimary.getSelectedSensorPosition();
       
     }
+    public void swerveDrive(double d, double e) {
+      throw new UnsupportedOperationException("Unimplemented method 'Drive'");
+    }
 
   /*public void setTurn(double turnSpeed){
     m_leftLeader.set(turnSpeed);

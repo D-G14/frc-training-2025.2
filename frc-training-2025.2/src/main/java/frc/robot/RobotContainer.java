@@ -13,7 +13,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.ArcadeMotor;
 import frc.robot.commands.MoveForDistance;
-import frc.robot.commands.MoveForTime;
+import frc.robot.commands.MoveWithPID;
+//import frc.robot.commands.MoveForTime;
 //import edu.wpi.first.wpilibj2.command.RunCommand;
 //import frc.robot.constants.IOConstants;
 import frc.robot.constants.IOConstants;
@@ -27,7 +28,8 @@ public class RobotContainer {
   private Motor m_motor;
   private ArcadeMotor m_arcadeMotor = new ArcadeMotor(m_motor,m_joystick);
   private MoveForDistance m_MoveForDistance = new MoveForDistance(m_drive, 0, 0);
-  private MoveForTime m_MoveForTime = new MoveForTime(m_drive, 0, 0);
+  /* Is there a need for this --v
+  private MoveForTime m_MoveForTime = new MoveForTime(m_drive, 0, 0);*/
   //private final Drive m_drivetrain = new Drive();
   //private Joystick m_joystick = new Joystick(IOConstants.kJoystickID);
   public RobotContainer() {
@@ -48,6 +50,7 @@ public class RobotContainer {
   private void configureBindings() {}
 
   public Command getAutonomousCommand() {
-    return m_MoveForDistance;
+     return new MoveWithPID(m_drive, 0);
+    //return m_MoveForDistance;
   }
 }
