@@ -5,7 +5,7 @@
 package frc.robot.constants;
 
 /** Add your docs here. */
-public class DriveConstants{
+public class DriveTrainConstants{
     public static final int kTalonLeftID = 0;
     public static final int kTalonRightID = 0;
     public static final int kVictorLeftID = 0;
@@ -17,7 +17,12 @@ public class DriveConstants{
     public static double kTargetTicks = 0;
     public static double kWheelDiameter = 0;
     public static double kTicksPerRotation = 0;
-    public static double kWheelRot = 0;
+    //public static double kWheelRot = 0;
+    
+  public static double KDeadband = 0.5;
+      public static final double kP = 0;
+    public static final double kI = 0;
+    public static final double kD = 0;
 
   }
 

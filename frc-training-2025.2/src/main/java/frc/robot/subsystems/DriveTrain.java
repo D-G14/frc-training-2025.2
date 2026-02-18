@@ -14,17 +14,17 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 //import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.constants.DriveConstants;
+import frc.robot.constants.DriveTrainConstants;
 
 
 
-public class Drive extends SubsystemBase {
+public class DriveTrain extends SubsystemBase {
   /** Creates a new Drive. */
   //Created duplicate to add left and right
-private final TalonSRX m_rightPrimary = new TalonSRX(DriveConstants.kTalonRightID);
-private final TalonSRX m_leftPrimary = new TalonSRX(DriveConstants.kTalonLeftID);
-private final VictorSPX m_leftSecondary = new VictorSPX(DriveConstants.kVictorLeftID);
-private final VictorSPX m_rightSecondary = new VictorSPX(DriveConstants.kVictorRightID);
+private final TalonSRX m_rightPrimary = new TalonSRX(DriveTrainConstants.kTalonRightID);
+private final TalonSRX m_leftPrimary = new TalonSRX(DriveTrainConstants.kTalonLeftID);
+private final VictorSPX m_leftSecondary = new VictorSPX(DriveTrainConstants.kVictorLeftID);
+private final VictorSPX m_rightSecondary = new VictorSPX(DriveTrainConstants.kVictorRightID);
 /*private final WPI_TalonSRX m_leftLeader = new WPI_TalonSRX(1);
 private final WPI_TalonSRX m_leftFollower = new WPI_TalonSRX(2);
 private final WPI_VictorSPX m_rightLeader = new WPI_VictorSPX(3);
@@ -34,7 +34,7 @@ private final WPI_VictorSPX rightMotor = new WPI_VictorSPX(2);
 private final WPI_TalonSRX m_motorSRX = new WPI_TalonSRX(1);
 private final WPI_VictorSPX m_motorSPX = new WPI_VictorSPX(2);*/
 
-  public Drive() {
+  public DriveTrain() {
     m_leftSecondary.follow(m_leftPrimary);
     m_rightSecondary.follow(m_rightPrimary);
     m_rightPrimary.setInverted(true);
@@ -49,12 +49,12 @@ private final WPI_VictorSPX m_motorSPX = new WPI_VictorSPX(2);*/
     
    
   }
-  public void setleftSpeed(double speed){
+  public void setLeftSpeed(double speed){
     m_leftPrimary.set(speed);
     //We don't need to put the follower code, right?
     //m_leftFollower.set(speed);
   }
-  public void setrightSpeed(double speed){
+  public void setRightSpeed(double speed){
     m_rightPrimary.set(speed);
     //We don't need to put the follower code, right?
     //m_rightFollower.set(speed);
@@ -87,10 +87,6 @@ private final WPI_VictorSPX m_motorSPX = new WPI_VictorSPX(2);*/
           return m_rightPrimary.getSelectedSensorPosition();
       
     }
-    public void swerveDrive(double d, double e) {
-      throw new UnsupportedOperationException("Unimplemented method 'Drive'");
-    }
-
   /*public void setTurn(double turnSpeed){
     m_leftLeader.set(turnSpeed);
     m_rightLeader.set(turnSpeed);

@@ -6,15 +6,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.constants.IOConstants;
 //IOConstant import here --v
 //import frc.robot.constants.IOConstants;
 import frc.robot.constants.MotorConstants;
-import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.DriveTrain;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class ArcadeDrive extends Command {
   //declaring drivetrain
-  private Drive m_drive;
+  private DriveTrain m_drive;
   //declaring joystick
   private Joystick m_joystick;
   //4 variables 
@@ -23,7 +24,7 @@ public class ArcadeDrive extends Command {
   private double m_left;
   private double m_right;
   /** Creates a new ArcadeDrive. */
-  public ArcadeDrive(Drive m_drive, Joystick m_joystick) {
+  public ArcadeDrive(DriveTrain m_drive, Joystick m_joystick) {
     this.m_drive = m_drive;
     this.m_joystick = m_joystick;
     addRequirements(m_drive);
@@ -41,14 +42,14 @@ public class ArcadeDrive extends Command {
    //do I need this? -->
     //m_speed = m_joystick.getRawAxis(IOConstants.kMotorControlAxis) * MotorConstants.kArcadeMultiplier;
   //invert because y is negative when going forward.
-  m_speed = -m_joystick.getRawAxis(0) * MotorConstants.kArcadeMultiplier; 
-  m_turn = m_joystick.getRawAxis(0)  * MotorConstants.kTurnMultiplier;
+  m_speed = -m_joystick.getRawAxis(IOConstants.kMotorControlAxis) * MotorConstants.kArcadeMultiplier; 
+  m_turn = m_joystick.getRawAxis(IOConstants.kMotorControlAxis)  * MotorConstants.kTurnMultiplier;
   //turns left because turn is getting subtracted from speed, but turn has to be negative.
   m_left = m_speed + m_turn;
   //turns right because turn is getting subtracted from speed, and turn is positive.
   m_right = m_speed - m_turn;
-  m_drive.setrightSpeed(m_right);
-  m_drive.setleftSpeed(m_left);
+  m_drive.setRightSpeed(m_right);
+  m_drive.setLeftSpeed(m_left);
   }
 
   // Called once the command ends or is interrupted.

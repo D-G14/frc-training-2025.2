@@ -10,23 +10,24 @@ import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.constants.DriveTrainConstants;
 //import frc.robot.constants.DriveConstants;
-import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.DriveTrain;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class MoveWithPID extends Command {
-  private final PIDController m_pid = new PIDController(0, 0, 0);
+  private final PIDController m_pid = new PIDController(DriveTrainConstants.kP, DriveTrainConstants.kI, DriveTrainConstants.kD);
   private MoveWithPIDSendable m_sendable = new MoveWithPIDSendable();
-  private final double m_deadband = 0.5;
+  private  double m_deadband;
   private double m_currentTicks;
   private double m_targetTicks;
-  private Drive m_drive;
+  private DriveTrain m_drive;
   private double m_initialTicks;
   private double m_error;
   double m_output = m_pid.calculate(m_currentTicks, m_targetTicks);
   
   /** Creates a new MoveWithPID. */
-  public MoveWithPID(Drive drive, double targetTicks) {
+  public MoveWithPID(DriveTrain drive, double targetTicks) {
     m_drive = drive;
     m_targetTicks = targetTicks;
 
@@ -52,13 +53,11 @@ public class MoveWithPID extends Command {
    m_currentTicks = m_drive.getLeftEncoderTicks();
   m_output = m_pid.calculate(m_currentTicks, m_targetTicks);
    m_error = m_targetTicks + m_initialTicks - m_currentTicks;
-   m_drive.swerveDrive(m_output, m_output);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_drive.swerveDrive(0.0,0.0);
   }
 
   // Returns true when the command should end.
