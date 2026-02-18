@@ -7,11 +7,9 @@ package frc.robot.commands;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//import edu.wpi.first.wpilibj.Encoder;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.constants.DriveTrainConstants;
-//import frc.robot.constants.DriveConstants;
 import frc.robot.subsystems.DriveTrain;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
@@ -23,16 +21,11 @@ public class MoveWithPID extends Command {
   private double m_targetTicks;
   private DriveTrain m_drive;
   private double m_initialTicks;
-  private double m_error;
   double m_output = m_pid.calculate(m_currentTicks, m_targetTicks);
-  
   /** Creates a new MoveWithPID. */
   public MoveWithPID(DriveTrain drive, double targetTicks) {
     m_drive = drive;
     m_targetTicks = targetTicks;
-
-   
-   
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_drive);
     m_pid.setTolerance(m_deadband);
@@ -41,7 +34,8 @@ public class MoveWithPID extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    SmartDashboard.putData("MoveWithPID",m_sendable);
+    //Do I need this --v
+    //SmartDashboard.putData("MoveWithPID",m_sendable);
     m_initialTicks = m_drive.getLeftEncoderTicks();
     m_pid.reset();
     m_pid.setSetpoint(m_initialTicks + m_targetTicks);
@@ -52,12 +46,13 @@ public class MoveWithPID extends Command {
   public void execute() {
    m_currentTicks = m_drive.getLeftEncoderTicks();
   m_output = m_pid.calculate(m_currentTicks, m_targetTicks);
-   m_error = m_targetTicks + m_initialTicks - m_currentTicks;
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_drive.setLeftSpeed(0);
+    m_drive.setRightSpeed(0);
   }
 
   // Returns true when the command should end.
@@ -70,21 +65,14 @@ public class MoveWithPID extends Command {
       }
     
     private class MoveWithPIDSendable implements Sendable {
-   
-    
-    
-  
       @Override
   public void initSendable(SendableBuilder builder) {
     builder.setSmartDashboardType("MoveWithPIDSendable");
     builder.addDoubleProperty("Output",()-> m_output, null);
-    builder.addDoubleProperty("Target Ticks",() -> m_targetTicks, (double kTargetTicks) ->  m_targetTicks = kTargetTicks);
-    builder.addDoubleProperty("Error",() -> m_error, null);
+    builder.addDoubleProperty("Target Ticks",() -> m_targetTicks, (double targetTicks) ->  m_targetTicks = targetTicks);
     //Could I use m_currentTicks instead of getLeftEncoderTicks? --v
-    builder.addDoubleProperty("Current Ticks",() -> m_drive.getLeftEncoderTicks(),null);
+    builder.addDoubleProperty("Current Ticks",() -> m_currentTicks,null);
     builder.addDoubleProperty("Starting Ticks",() -> m_initialTicks,null);
-    
-   
   }
 }
 }

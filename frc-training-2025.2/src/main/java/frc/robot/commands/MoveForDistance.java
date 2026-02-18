@@ -24,7 +24,7 @@ public class MoveForDistance extends Command {
       public MoveForDistance(DriveTrain drive, double speed) {
         speed = m_speed;
         drive = m_drive;
-        //Old one --v is there a need for wheel Rot
+        //Old one --v; Is there a need for wheelRot?
         //m_targetTicks = m_distanceInFeet*m_wheelRot/(Math.PI*DriveTrainConstants.kWheelDiameter)*DriveTrainConstants.kTicksPerRotation;
         //Is this correct --v
         m_targetTicks = (m_distanceInFeet/(Math.PI*DriveTrainConstants.kWheelDiameter))*DriveTrainConstants.kTicksPerRotation;
@@ -60,7 +60,6 @@ public class MoveForDistance extends Command {
       // Returns true when the command should end.
       @Override
       public boolean isFinished() {
-        
         return m_error <= 0;
       }
        public MoveForDistanceSendable getSendable(){
@@ -68,20 +67,15 @@ public class MoveForDistance extends Command {
       }
     
     private class MoveForDistanceSendable implements Sendable {
-   
-    
-    
-  
       @Override
   public void initSendable(SendableBuilder builder) {
     builder.setSmartDashboardType("MoveForDistanceSendable");
     //null is when we don't want it to be able to be changed on smart dashboard.
-    builder.addDoubleProperty("Speed",()-> m_speed, null);
+    builder.addDoubleProperty("Speed",()-> m_speed, (double speed) -> m_speed = speed);
     builder.addDoubleProperty("Initial Ticks",() -> m_initialTicks,null);
     builder.addDoubleProperty("Target Ticks",() -> m_targetTicks,(double kTargetTicks) -> m_targetTicks = kTargetTicks);
     builder.addDoubleProperty("Current Ticks",() -> m_drive.getLeftEncoderTicks(), null);
     builder.addDoubleProperty("error",() -> m_error,  null);
-   
   }
 }
 }

@@ -19,8 +19,6 @@ public class MoveForTime extends Command {
     drive = m_drive;
     timeInSeconds = m_timeInSeconds;
     speed = m_speed;
-    
- 
     // Use addRequirements() here to declare subsystem dependencies.
    addRequirements(m_drive);
   }
@@ -51,7 +49,6 @@ public class MoveForTime extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-  
     return m_timer.hasElapsed(m_timeInSeconds);
   }
 }

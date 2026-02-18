@@ -8,20 +8,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.constants.IOConstants;
 import frc.robot.constants.MotorConstants;
-
 import frc.robot.subsystems.Motor;
-//import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-//import edu.wpi.first.wpilibj2.command.CommandBase;
-//Trying to declare a new Joystick 
 import edu.wpi.first.wpilibj.Joystick;
-// public class RunMotorForTime extends CommandBase{
-//   private final MotorController m_motor;
-//   private final double m_speed;
-// }
-// public RunMotorForTime(MotorController motor, double speed){
-//   this.m_motor = motor;
-//   this.m_speed = speed;
-// }
 
 /*  You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class ArcadeMotor extends Command {
@@ -30,9 +18,9 @@ public class ArcadeMotor extends Command {
   private Joystick m_joystick;
   private double m_speed; //Do I have to pass this into a constructor?
   
-  public ArcadeMotor(Motor m_motor, Joystick m_joystick) {
-    this.m_motor = m_motor;
-    this.m_joystick = m_joystick; 
+  public ArcadeMotor(Motor motor, Joystick joystick) {
+    m_motor = motor;
+    m_joystick = joystick; 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_motor);
   }
@@ -58,7 +46,4 @@ public class ArcadeMotor extends Command {
   public boolean isFinished() {
     return false;
   }
-  //Trying to declare motors
-  // private final Spark m_LeftMotor= new Spark(0);
-  // private final Spark m_rightMotor= new Spark(0);
 }
